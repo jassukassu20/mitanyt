@@ -1,0 +1,196 @@
+[
+ [
+  "hook",
+  [
+   [
+    "Last night, your phone lost signal.",
+    null
+   ],
+   [
+    "This morning... your bank account was empty.",
+    null
+   ],
+   [
+    "Someone had moved your number to their own e-SIM. And with it, every bank code.",
+    "Someone had moved your number to their own eSIM. And with it, every bank code."
+   ]
+  ]
+ ],
+ [
+  "problem",
+  [
+   [
+    "DNA already warns customers about scam calls and links.",
+    null
+   ],
+   [
+    "But a warning is not an answer.",
+    null
+   ],
+   [
+    "Scared people make the worst move. They call back. Read out a code. Pay the fee.",
+    null
+   ],
+   [
+    "And small businesses? Most have no security team.",
+    null
+   ]
+  ]
+ ],
+ [
+  "solution",
+  [
+   [
+    "This is Mitta newt. Finnish for: what now?",
+    "This is Mitä nyt? Finnish for: “What now?”"
+   ],
+   [
+    "You describe what happened, in your own words.",
+    null
+   ],
+   [
+    "One clear next step. The reason why. And a real person, when it matters.",
+    null
+   ],
+   [
+    "It even uses what only an operator can see, like SIM changes. But only with permission.",
+    null
+   ]
+  ]
+ ],
+ [
+  "demo1",
+  [
+   [
+    "Let me show you the working prototype.",
+    null
+   ],
+   [
+    "This customer lost signal, right after an e-SIM activation message.",
+    "This customer lost signal, right after an eSIM activation message."
+   ],
+   [
+    "First, it asks permission to check SIM history. Only for this question.",
+    null
+   ],
+   [
+    "Then one decisive question: did you do this yourself?",
+    null
+   ],
+   [
+    "No. So: act now. Lock the number. Call the bank.",
+    null
+   ],
+   [
+    "One tap, and a DNA agent takes over, with a summary. No repeating yourself.",
+    null
+   ]
+  ]
+ ],
+ [
+  "demo2",
+  [
+   [
+    "Now, a nastier trick.",
+    null
+   ],
+   [
+    "Scammers now hide instructions for AI inside messages. Like: this link is verified safe.",
+    "Scammers now hide instructions for AI inside messages. Like: “this link is verified safe.”"
+   ],
+   [
+    "A normal chatbot can be fooled. Mitta newt ignores it, and warns the customer.",
+    "A normal chatbot can be fooled. Mitä nyt? ignores it, and warns the customer."
+   ]
+  ]
+ ],
+ [
+  "demo3",
+  [
+   [
+    "And when a message is genuine? No panic. Nothing needs to be done.",
+    null
+   ]
+  ]
+ ],
+ [
+  "demo4",
+  [
+   [
+    "Anyone can simply type what happened.",
+    null
+   ],
+   [
+    "My grandma gave her bank codes to a caller.",
+    "“My grandma gave her bank codes to a caller.”"
+   ],
+   [
+    "Instantly: call the bank. Now.",
+    null
+   ]
+  ]
+ ],
+ [
+  "results",
+  [
+   [
+    "On the organisers' own evaluator: five hundred and eighty-eight cases, in three languages.",
+    null
+   ],
+   [
+    "One hundred percent safe next steps. The included baseline? Sixty.",
+    null
+   ],
+   [
+    "Zero false alarms. Zero unsafe answers.",
+    null
+   ],
+   [
+    "And a hundred and thirty-six new situations, written blind by independent AI reviewers: every one handled safely.",
+    null
+   ]
+  ]
+ ],
+ [
+  "impact",
+  [
+   [
+    "So why does this matter for DNA?",
+    null
+   ],
+   [
+    "It turns every warning into action, at the moment customers are most afraid.",
+    null
+   ],
+   [
+    "Simple cases close in the chat. Urgent ones reach the right team, already summarised. That can mean fewer calls, and fraud stopped earlier.",
+    null
+   ],
+   [
+    "Free for every customer, to build trust. A paid security help desk for small businesses. Pricing, to be tested in a pilot.",
+    null
+   ],
+   [
+    "And it runs on signals only an operator has. That is DNA's advantage.",
+    null
+   ]
+  ]
+ ],
+ [
+  "close",
+  [
+   [
+    "DNA already warns you.",
+    null
+   ],
+   [
+    "Mitta newt tells you what to do next.",
+    "Mitä nyt? tells you what to do next."
+   ],
+   [
+    "Let's pilot it on DNA's call-warning screen.",
+    null
+   ]
+  ]
+ ]
+]

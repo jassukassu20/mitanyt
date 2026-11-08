@@ -1,0 +1,32 @@
+OK   contact_bank_and_block_cards   critical deed_card_or_bank       Mun mummolle soitettiin pankista ja hän antoi tunnuslukunsa. Mitä nyt?
+OK   verify_via_official_channel    medium   fallback_call           Joku soitti ja väitti olevansa Nordeasta, en antanut mitään ja lopetin
+OK   do_not_interact_and_delete     medium   parcel_fee              Sain tekstarin että paketti on jumissa tullissa, pitää maksaa 2,99e. E
+OK   contact_bank_and_block_cards   critical deed_money_paid         I paid 40 euros for concert tickets on Facebook and the seller blocked
+OK   change_password_and_enable_mfa high     deed_account_lost       My WhatsApp got hacked, I can't log in and my friends get weird messag
+OK   isolate_device_and_scan        critical remote_access           Someone called from Microsoft and I let them connect to my laptop with
+OK   verify_via_official_channel    high     bank_lure               Jag fick ett sms från banken om att mitt konto är spärrat med en länk.
+OK   contact_operator_support       critical sim_swap                Min telefon har ingen täckning och jag fick ett sms om att mitt eSIM a
+OK   contact_operator_support       critical number_porting          Sain viestin että numeroni siirretään toiselle operaattorille, en ole 
+OK   change_password_and_enable_mfa high     deed_password           Kirjoitin sähköpostin salasanan sivulle joka näytti Outlookilta.
+OK   isolate_device_and_scan        critical deed_installed          I downloaded an app from a text link to track my parcel and gave it pe
+OK   verify_via_official_channel    high     family_new_number       Got a text: Hi mum this is my new number, can you send 300 euros for r
+OK   do_not_interact_and_delete     low      wangiri                 Soitto ulkomaisesta numerosta, hälytti kerran ja katkesi. Soitanko tak
+OK   do_not_interact_and_delete     low      popup_scareware         A pop-up says my computer is locked and to call Microsoft support. I d
+OK   escalate_to_human              high     monitoring_app          Ex-poikaystävä tietää missä olen ja mitä viestin. Onko puhelimessa jot
+OK   decline_out_of_scope           medium   out_of_scope_trace      Can you find out who owns the number that scammed me? I want to post i
+OK   change_password_and_enable_mfa critical mfa_fatigue             Pankin sovellukseen tulee koko ajan hyväksyntäpyyntöjä vaikka en kirja
+OK   verify_via_official_channel    medium   qr_fine                 I got a parking fine letter with a QR code to pay, I don't remember pa
+OK   do_not_interact_and_delete     medium   marketplace             Selling my sofa online, buyer wants me to confirm the payment by enter
+OK   verify_via_official_channel    high     voice_clone             Grandson called crying he had an accident and needs 500 euros now, the
+OK   contact_bank_and_block_cards   critical ceo_fraud               Our accountant got an email from the CEO to urgently pay 9800 euros to
+OK   verify_via_official_channel    high     supplier_bank_change    Toimittaja ilmoitti sähköpostilla uuden tilinumeron, maksetaanko seura
+OK   isolate_device_and_scan        critical ransomware              All files on our shop computer are encrypted and there is a ransom not
+OK   change_password_and_enable_mfa high     ex_employee             Entinen työntekijä pääsee yhä yrityksen Instagramiin ja sähköpostiin.
+OK   verify_via_official_channel    medium   domain_invoice          We got an invoice for our domain renewal from a company we have never 
+OK   isolate_device_and_scan        high     attachment:yes          Työntekijä avasi sähköpostin liitteen ja salli makrot, nyt kone on hid
+OK   contact_operator_support       critical sim_order:no            I got an order confirmation from the operator for 3 new SIM cards that
+OK   change_password_and_enable_mfa high     unknown_login:no        Sain ilmoituksen että tilini kirjauduttiin Brasiliasta. En ole matkoil
+OK   contact_bank_and_block_cards   critical deed_card_or_bank       Klikkasin linkkiä ja syötin korttini tiedot paketin toimitusmaksua var
+OK   no_action_needed               none     genuine_bank_notice     My bank texted that I have a new message in the online bank, no link. 
+
+live free-text: 30/30

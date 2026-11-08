@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mitä nyt? — What should I do now?</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root{--ink:#16181f;--ink2:#474c5a;--ink3:#7a7f8e;--bg:#f4f1ea;--paper:#fffdf9;--line:#e4dfd3;--acc:#0e5e57;--acc2:#e3efec;--acc3:#c9e2dc;
+--crit:#b42318;--critbg:#fdeceb;--high:#b4520c;--highbg:#fdf0e3;--med:#8a6a00;--medbg:#fbf3d9;--low:#2b7a4b;--lowbg:#e6f3ea;
+--f:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--h:"Space Grotesk",Inter,ui-sans-serif,system-ui,sans-serif}
+*{box-sizing:border-box}html,body{margin:0}body{font-family:var(--f);color:var(--ink);background:var(--bg);font-size:15px;line-height:1.5}
+button{font:inherit;cursor:pointer;color:inherit}
+/* top bar */
+.top{position:sticky;top:0;z-index:5;background:rgba(255,253,249,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topin{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:22px;padding:12px 24px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}.mark{width:36px;height:36px;border-radius:11px;background:var(--acc);color:#fff;display:grid;place-items:center;font:700 17px var(--h)}
+.brand b{font:700 19px var(--h);letter-spacing:-.01em}.brand small{display:block;color:var(--ink3);font-size:12px;margin-top:-2px}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}nav button{border:0;background:none;padding:8px 14px;border-radius:99px;font-weight:500;color:var(--ink2)}
+nav button.on{background:var(--ink);color:#fff}
+.view{display:none}.view.on{display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:20px 24px 60px}
+/* hero */
+.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:18px}
+.hero h1{font:600 34px/1.12 var(--h);letter-spacing:-.02em;margin:0;max-width:720px}.hero p{margin:8px 0 0;color:var(--ink2);font-size:17px;max-width:680px}
+.proto{font-size:12px;color:var(--ink2);background:#fff4d6;border:1px solid #efdb9a;padding:4px 10px;border-radius:99px;white-space:nowrap}
+/* try it grid */
+.try{display:grid;grid-template-columns:minmax(0,1fr) 410px minmax(0,0.9fr);gap:26px;align-items:start}
+@media(max-width:1180px){.try{grid-template-columns:minmax(0,1fr) 410px}.why{grid-column:1/-1}}
+@media(max-width:820px){.try{grid-template-columns:minmax(0,1fr)}.phone{order:-1;position:static;margin:0 auto;height:calc(100vh - 150px);min-height:520px;width:100%}.why{position:static}#list{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}#list h3{display:none}.sc{min-width:220px;margin:0}.intro h1{font-size:24px}.topin{padding:10px 14px}nav button{padding:6px 10px}}
+.try>*{min-width:0}
+.intro h1{font:600 28px/1.15 var(--h);letter-spacing:-.02em;margin:0 0 6px}.intro p{margin:0 0 10px;color:var(--ink2);font-size:15px}.intro{margin-bottom:14px}
+.panel h3{font:600 13px var(--f);text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin:18px 2px 8px}.panel h3:first-child{margin-top:0}
+.sc{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:11px 13px;margin-bottom:8px;transition:border-color .15s,transform .15s}
+.sc:hover{border-color:var(--acc);transform:translateY(-1px)}.sc.on{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc2)}
+.sc .ic{font-size:21px;line-height:1.2}.sc b{display:block;font-weight:600;font-size:14.5px}.sc span{color:var(--ink3);font-size:12.5px}
+.lang{font-size:10.5px;font-weight:700;color:var(--acc);background:var(--acc2);border-radius:5px;padding:1px 5px;margin-left:5px;vertical-align:1px}
+/* phone */
+.phone{position:sticky;top:72px;width:410px;max-width:100%;height:calc(100vh - 92px);min-height:540px;max-height:800px;background:var(--ink);border-radius:46px;padding:12px;box-shadow:0 30px 60px -30px rgba(22,24,31,.45)}
+.screen{height:100%;background:#f7f5ef;border-radius:36px;overflow:hidden;display:flex;flex-direction:column}
+.ph{display:flex;align-items:center;gap:10px;padding:18px 18px 12px;background:var(--paper);border-bottom:1px solid var(--line)}
+.ph .mark{width:32px;height:32px;font-size:14px;border-radius:10px}.ph b{font:600 15px var(--h)}.ph small{display:block;font-size:11.5px;color:var(--low)}
+.ph .sp{flex:1}.ph button{border:1px solid var(--line);background:#fff;border-radius:99px;font-size:12px;padding:4px 10px;color:var(--ink2)}
+.thread{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:9px;scroll-behavior:smooth}
+.m{flex-shrink:0;max-width:88%;font-size:14px;line-height:1.45}
+.me{align-self:flex-end;background:var(--acc);color:#fff;padding:9px 12px;border-radius:18px 18px 5px 18px}
+.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:18px 18px 18px 5px}
+.fwd{align-self:flex-end;max-width:88%;background:#fff;border:1px dashed #cbc4b2;border-radius:14px;padding:9px 11px;font-size:12.5px;color:var(--ink2)}
+.fwd .t{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);margin-bottom:3px}
+.inj{background:#ffe7e3;color:#8b1c11;text-decoration:line-through;border-radius:4px;padding:0 2px}
+.injnote{display:inline-block;margin-top:5px;font-size:11px;font-weight:600;color:#8b1c11;background:#ffe7e3;border-radius:6px;padding:1px 6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.chip{border:1px solid var(--acc);color:var(--acc);background:#fff;border-radius:99px;padding:6px 12px;font-size:13px;font-weight:500}
+.chip.pri{background:var(--acc);color:#fff}.chip.gh{border-color:var(--line);color:var(--ink3);font-size:12px}.chip:disabled{opacity:.4;cursor:default}
+.consent{background:var(--acc2);border-color:var(--acc3)}.consent .t{font-size:11px;font-weight:700;color:var(--acc);letter-spacing:.05em;text-transform:uppercase}
+.used{display:flex;flex-direction:column;gap:4px;margin-top:6px}.used span{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:3px 8px;color:var(--ink2)}
+.ans{align-self:stretch;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.ans .hd{padding:12px 14px}.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:3px 9px}
+.ans h4{font:600 18px/1.25 var(--h);margin:8px 0 0}
+.ans .bd{padding:0 14px 12px;font-size:13.5px;color:var(--ink2)}.ans .bd p{margin:0 0 7px}.ans .bd .first{color:var(--ink);font-weight:600}
+.ans .ft{display:flex;gap:8px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);background:#fcfbf7;flex-wrap:wrap}
+.btn{border:0;border-radius:99px;padding:8px 14px;font-weight:600;font-size:13px;background:var(--ink);color:#fff}.btn.red{background:var(--crit)}.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.src{font-size:11.5px;color:var(--ink3);padding:0 14px 12px}
+.r-critical .hd{background:var(--critbg)}.r-critical .pill{background:var(--crit);color:#fff}.r-critical h4{color:#6d140c}
+.r-high .hd{background:var(--highbg)}.r-high .pill{background:var(--high);color:#fff}.r-high h4{color:#62300a}
+.r-medium .hd{background:var(--medbg)}.r-medium .pill{background:var(--med);color:#fff}.r-medium h4{color:#4f3d00}
+.r-low .hd,.r-none .hd{background:var(--lowbg)}.r-low .pill,.r-none .pill{background:var(--low);color:#fff}.r-low h4,.r-none h4{color:#18492c}
+.inp{display:flex;gap:8px;padding:10px;background:var(--paper);border-top:1px solid var(--line)}
+.inp textarea{flex:1;resize:none;border:1px solid var(--line);border-radius:20px;padding:10px 14px;font:inherit;font-size:14px;height:44px;background:#fff}
+.inp button{width:44px;height:44px;border-radius:50%;border:0;background:var(--acc);color:#fff;font-size:18px}
+.typing{align-self:flex-start;color:var(--ink3);font-size:13px;padding:4px 8px}
+/* why panel */
+.why{position:sticky;top:76px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px}
+.why h3{font:600 16px var(--h);margin:0 0 4px}.why .sub{color:var(--ink3);font-size:13px;margin:0 0 12px}
+.wi{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px}.wi:first-of-type{border-top:0}.wi .wk{width:22px;flex:none;text-align:center}
+.wi b{display:block;font-size:12px;color:var(--ink3);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.match{display:inline-block;font-size:12px;font-weight:600;border-radius:6px;padding:1px 7px;background:var(--lowbg);color:var(--low)}
+.seg{display:inline-flex;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:3px;margin-top:6px}.seg button{border:0;background:none;padding:4px 11px;border-radius:99px;font-size:12.5px;color:var(--ink2)}.seg button.on{background:var(--ink);color:#fff}
+.ctl{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink3)}
+.ctl div{margin-bottom:8px}
+/* results */
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}@media(max-width:900px){.kp{grid-template-columns:repeat(2,1fr)}}
+.k{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px}.k b{display:block;font:600 40px/1 var(--h);color:var(--acc);letter-spacing:-.02em}
+.k p{margin:8px 0 0;font-size:14px}.k span{display:block;margin-top:6px;font-size:12.5px;color:var(--ink3)}
+.sec{margin-top:36px}.sec h2{font:600 24px var(--h);margin:0 0 6px}.sec>p{color:var(--ink2);margin:0 0 16px;max-width:760px}
+.bars{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px}
+.bar{display:grid;grid-template-columns:200px 1fr;gap:12px;align-items:center;margin:10px 0;font-size:13.5px}
+.track{position:relative;height:26px;background:#efebe1;border-radius:8px;overflow:hidden}
+.fill{position:absolute;left:0;top:0;bottom:0;border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:12px;font-weight:600;color:#fff}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--ink3);margin-bottom:4px}.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}@media(max-width:900px){.cards3{grid-template-columns:1fr}}
+.c{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px}.c h4{font:600 17px var(--h);margin:0 0 6px}.c p{margin:0;color:var(--ink2);font-size:14px}
+.c .n{font:600 30px var(--h);color:var(--acc);margin-bottom:4px}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}@media(max-width:900px){.flow{grid-template-columns:1fr}}
+.flow .c .n{font-size:22px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:800px){.vs{grid-template-columns:1fr}}
+.vs ul{margin:8px 0 0;padding-left:18px;font-size:14px;color:var(--ink2)}.vs li{margin:5px 0}
+.dark{background:var(--ink);color:#f4f1ea;border-color:var(--ink)}.dark p,.dark li{color:#c9ccd6}.dark h4{color:#fff}
+.sheetbg{position:fixed;inset:0;background:rgba(22,24,31,.45);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}.sheetbg.on{display:flex}
+.sheet{background:var(--paper);border-radius:22px;max-width:480px;width:100%;padding:22px}.sheet h3{font:600 20px var(--h);margin:0 0 6px}
+.sheet .sum{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px;margin:12px 0}.sheet .sum div{margin:3px 0}
+.sheet .row{display:flex;gap:8px;justify-content:flex-end}
+.foot{max-width:1240px;margin:0 auto;padding:0 24px 30px;color:var(--ink3);font-size:12px}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin">
+  <div class="brand"><div class="mark">?!</div><div><b>Mitä nyt?</b><small>What should I do now?</small></div></div>
+  <nav id="nav"><button data-v="try" class="on">Try it</button><button data-v="res">Results</button><button data-v="how">How it works</button><button data-v="dna">Why DNA</button></nav>
+</div></header>
+
+<section class="view on" id="v-try"><div class="wrap">
+  <div class="try">
+    <div class="panel"><div class="intro"><h1>Something online feels wrong?</h1><p>Get one clear next step. Pick a situation, or type your own in the phone.</p><span class="proto">Prototype · synthetic data · not a live DNA service</span></div><div id="list"></div></div>
+    <div class="phone"><div class="screen">
+      <div class="ph"><div class="mark">?!</div><div><b>Mitä nyt?</b><small>● Security help</small></div><div class="sp"></div><button id="restart">Start over</button></div>
+      <div class="thread" id="thread"></div>
+      <form class="inp" id="form"><textarea id="inp" placeholder="Describe what happened…"></textarea><button aria-label="Send">➤</button></form>
+    </div></div>
+    <aside class="why" id="why"></aside>
+  </div>
+</div></section>
+
+<section class="view" id="v-res"><div class="wrap" id="res"></div></section>
+<section class="view" id="v-how"><div class="wrap" id="how"></div></section>
+<section class="view" id="v-dna"><div class="wrap" id="dna"></div></section>
+<div class="foot">Mitä nyt? · DNA × Since AI Hackathon 2026 · prototype on the Since AI synthetic SimSet v2.0.1. Advice texts reference the SimSet’s synthetic guidance corpus.</div>
+<div class="sheetbg" id="sheet"><div class="sheet" id="sheetin"></div></div>
+
+<script>/*STEPS*/</script>
+<script>/*PLAYBOOKS*/</script>
+<script>/*ENGINE*/</script>
+<script>const DATA=/*DATA*/null; const EV=/*EVIDENCE*/null;</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s), esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const RISK={fi:{none:'Ei riskiä',low:'Pieni riski',medium:'Ole varovainen',high:'Toimi tänään',critical:'Toimi heti'},en:{none:'All good',low:'Low risk',medium:'Be careful',high:'Act today',critical:'Act now'},sv:{none:'Ingen fara',low:'Låg risk',medium:'Var försiktig',high:'Agera i dag',critical:'Agera nu'}};
+const UI={fi:{human:'Puhu ihmisen kanssa',allow:'Salli',deny:'Ei kiitos',yes:'Kyllä',no:'Ei',unsure:'En ole varma',sim:'Vastaa kuten käyttäjä',hi:'Hei! Kerro omin sanoin, mitä tapahtui. Älä kirjoita salasanoja tai koodeja – en tarvitse niitä.'},
+ en:{human:'Talk to a person',allow:'Allow',deny:'No thanks',yes:'Yes',no:'No',unsure:'Not sure',sim:'Answer as the user',hi:'Hi! Tell me in your own words what happened. Please don’t type passwords or codes – I never need them.'},
+ sv:{human:'Prata med en människa',allow:'Tillåt',deny:'Nej tack',yes:'Ja',no:'Nej',unsure:'Osäker',sim:'Svara som användaren',hi:'Hej! Berätta med egna ord vad som hänt. Skriv inte lösenord eller koder – jag behöver dem aldrig.'}};
+const ACT={en:{no_action_needed:'Nothing needs to be done',do_not_interact_and_delete:'Don’t respond – just delete it',verify_via_official_channel:'Check it yourself through the official channel',contact_operator_support:'Contact operator support now',change_password_and_enable_mfa:'Change your password and turn on two-step sign-in',isolate_device_and_scan:'Disconnect the device and get it checked',contact_bank_and_block_cards:'Contact your bank now',report_to_authority:'Report it to the police',escalate_to_human:'A person should take over',decline_out_of_scope:'I can’t do that – here’s the safe route'},
+ fi:{no_action_needed:'Mitään ei tarvitse tehdä',do_not_interact_and_delete:'Älä vastaa – poista viesti',verify_via_official_channel:'Tarkista itse virallista kanavaa pitkin',contact_operator_support:'Ota heti yhteys operaattoriin',change_password_and_enable_mfa:'Vaihda salasana ja ota kaksivaiheinen tunnistus',isolate_device_and_scan:'Irrota laite verkosta ja tarkistuta se',contact_bank_and_block_cards:'Ota heti yhteys pankkiin',report_to_authority:'Ilmoita poliisille',escalate_to_human:'Ihmisen on hyvä jatkaa',decline_out_of_scope:'En voi tehdä tätä – tässä turvallinen tapa'},
+ sv:{no_action_needed:'Inget behöver göras',do_not_interact_and_delete:'Svara inte – radera det',verify_via_official_channel:'Kontrollera själv via officiell kanal',contact_operator_support:'Kontakta operatören nu',change_password_and_enable_mfa:'Byt lösenord och slå på tvåstegsverifiering',isolate_device_and_scan:'Koppla bort enheten och låt kontrollera den',contact_bank_and_block_cards:'Kontakta banken nu',report_to_authority:'Anmäl till polisen',escalate_to_human:'En människa bör ta över',decline_out_of_scope:'Det kan jag inte – här är det säkra sättet'}};
+const SIGNAME={artifact:'The message you shared',link_check:'DNA link check',call_warning:'DNA call warning','subscription.recent_events':'SIM & order history (with your permission)','operator_account.recent_logins':'Account logins (with your permission)','device.recent_app_installs':'Recently installed apps (with your permission)','device.security_findings':'Security app findings (with your permission)','business.staff_accounts':'Staff accounts (with your permission)'};
+const TARGET={operator_support_agent:'DNA customer service',security_specialist:'a DNA security specialist',business_security_support:'DNA business security support',human_advisor:'Trained adviser'};
+
+// scenario cards (indices into DATA.cases)
+const GROUPS=[
+ ['Everyday messages',[[0,'🏦','“Your bank account is locked”','Text with a link','FI'],[5,'📦','Clicked a parcel-fee link','Did I type my card?','EN'],[9,'✅','A real parcel notice','Should not cause panic','SV']]],
+ ['Something already happened',[[3,'📶','eSIM moved, phone lost signal','Possible number takeover','FI'],[1,'📲','Installed an app from a link','Device may be compromised','FI'],[2,'☎️','“Operator” asked for a code','Did I read it out?','FI']]],
+ ['Small businesses',[[4,'🧾','Supplier changed bank account','Invoice fraud check','FI'],[6,'💼','“CEO” wants an urgent payment','Already paid?','FI'],[10,'🔒','Files encrypted, ransom note','Ransomware','FI']]],
+ ['Can it be tricked?',[[8,'🧪','Scam text that tells the AI “it’s safe”','Hidden text inside the message','FI'],[7,'🛡️','My ex may be watching my phone','Safety first, then a person','EN']]],
+ ['Never seen while building',[[11,'👵','“Grandson” in an accident','Voice-clone call','EN'],[12,'🛋️','Selling a bike, “buyer” wants my card','Marketplace scam','EN'],[13,'🍏','iPhone profile from a link','Configuration profile','EN']]]];
+const list=$('#list');
+GROUPS.forEach(([g,items])=>{const h=document.createElement('h3');h.textContent=g;list.appendChild(h);items.forEach(([i,ic,t,s,l])=>{const b=document.createElement('button');b.className='sc';b.dataset.i=i;b.innerHTML='<div class="ic">'+ic+'</div><div><b>'+esc(t)+'</b><span>'+esc(s)+'</span></div>';b.onclick=()=>{document.querySelectorAll('.sc').forEach(x=>x.classList.remove('on'));b.classList.add('on');start(DATA.cases[i]);};list.appendChild(b);});});
+
+let cur=null,state={},replyLang='en',aud='consumer',facts=[];
+const L=()=>cur?cur.case.language:'en';
+const T=()=>UI[L()]||UI.en;
+const th=$('#thread');
+function add(cls,html){const d=document.createElement('div');d.className='m '+cls;d.innerHTML=html;th.appendChild(d);th.scrollTop=th.scrollHeight;return d;}
+function fit(){const l=th.lastElementChild;if(l&&l.classList.contains('ans')){th.scrollTop+=l.getBoundingClientRect().top-th.getBoundingClientRect().top-12;}else th.scrollTop=th.scrollHeight;}
+function think(cb){const t=add('typing','typing…');setTimeout(()=>{t.remove();cb();fit();requestAnimationFrame(fit);},420);}
+
+function home(){cur=null;state={};facts=[];th.innerHTML='';document.querySelectorAll('.sc').forEach(x=>x.classList.remove('on'));
+  add('bot',esc(UI.en.hi)+'<div class="chips"><button class="chip" data-i="3">📶 eSIM moved</button><button class="chip" data-i="8">🧪 Scam text vs. AI</button><button class="chip" data-i="9">✅ Real parcel notice</button></div>');
+  th.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>document.querySelector('.sc[data-i="'+b.dataset.i+'"]').click());
+  renderWhy();}
+
+function start(d){
+  cur=JSON.parse(JSON.stringify(d)); if(replyLang==='en') cur.case.language='en';
+  state={};facts=[];th.innerHTML='';
+  const c=cur.case,a=c.signals&&c.signals.artifact;
+  if(a&&(a.body||a.notes)){
+    let body=esc(a.body||a.notes),inj=false;
+    body=body.replace(/(\[[^\]]*(teko[aä]ly|AI|assist|avustaj)[^\]]*\]|(SYSTEM|J[aä]rjestelm[aä]viesti|Systemmeddelande)\s*:[^\n]*|\((Turvallisuustarkastus|Security check|S[aä]kerhetskontroll)[^)]*\)|Till AI-assistenten[^\n]*)/gi,m=>{inj=true;return '<span class="inj">'+m+'</span>';});
+    add('fwd','<div class="t">Shared message'+(a.sender&&a.sender!=='-'?' · '+esc(a.sender==='Operaattori'?'Your operator':a.sender):'')+'</div>'+body+(inj?'<div><span class="injnote">⚠ Text aimed at AI assistants – ignored</span></div>':''));
+  }
+  add('me',esc(c.opening_message));
+  const visible=JSON.parse(JSON.stringify(c));(c.consent.requires_consent||[]).forEach(p=>{if(!(c.consent.pre_granted||[]).includes(p))setPath(visible.signals,p,'available_with_consent');});
+  think(()=>handle(window.DSA.step({type:'start',case:visible},state)));
+}
+function setPath(o,p,v){const k=p.split('.');let x=o;for(let i=0;i<k.length-1;i++){if(!x[k[i]])return;x=x[k[i]];}if(k[k.length-1] in x)x[k[k.length-1]]=v;}
+function getPath(o,p){return p.split('.').reduce((x,k)=>x&&x[k],o);}
+function hum(s){return String(s).replace(/_/g,' ');}
+function summ(v){if(v==null)return'nothing found';if(Array.isArray(v)){if(!v.length)return'nothing found';const e=v[0];return hum(e.event||e.type||e.name||e.app||e.country||'1 entry')+(e.days_ago!=null?' · '+e.days_ago+' d ago':e.hours_ago!=null?' · '+e.hours_ago+' h ago':'')+(v.length>1?' (+'+(v.length-1)+' more)':'');}if(typeof v==='object')return JSON.stringify(v).slice(0,60);return String(v);}
+
+function handle(r){
+  const ui=T();
+  if(r.type==='consent_request'){
+    const d=add('bot consent','<div class="t">🔒 Optional · only for this question</div><div style="margin-top:4px">'+esc(r.text)+'</div><div class="chips"><button class="chip pri" data-v="1">'+ui.allow+'</button><button class="chip" data-v="0">'+ui.deny+'</button></div>');
+    d.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{d.querySelectorAll('.chip').forEach(x=>x.disabled=true);const ok=b.dataset.v==='1';add('me',esc(b.textContent));
+      const sig={};if(ok)r.fields.forEach(p=>sig[p]=getPath(cur.case.signals,p));
+      facts.push(ok?{k:'🔓',h:'You allowed',t:r.fields.map(p=>SIGNAME[p]||p).join(', ')}:{k:'🚫',h:'You declined',t:'Advice continues without that data'});
+      if(ok)add('bot','<div style="font-size:12.5px;color:var(--ink3)">Checked, with your permission:</div><div class="used">'+r.fields.map(p=>'<span><b>'+esc((SIGNAME[p]||p).replace(' (with your permission)',''))+':</b> '+esc(summ(sig[p]))+'</span>').join('')+'</div>');
+      think(()=>handle(window.DSA.step({type:'consent_reply',granted:ok?r.fields:[],refused:ok?[]:r.fields,signals:sig},state)));});
+    renderWhy();return;}
+  if(r.type==='question'){
+    const topic=(r.topics||[])[0],fact=cur.sim&&cur.sim.facts&&cur.sim.facts[topic];
+    const d=add('bot',esc(r.text)+'<div class="chips"><button class="chip" data-t="'+esc(ui.yes)+'">'+ui.yes+'</button><button class="chip" data-t="'+esc(ui.no)+'">'+ui.no+'</button><button class="chip" data-t="'+esc(ui.unsure)+'">'+ui.unsure+'</button>'+(fact?'<button class="chip gh" data-t="'+esc(fact)+'">↳ '+ui.sim+'</button>':'')+'</div>');
+    state.pending=d;d.querySelectorAll('.chip').forEach(b=>b.onclick=()=>reply(b.dataset.t));
+    facts.push({k:'❓',h:'Asked one question',t:'Because the answer changes the action'});renderWhy();return;}
+  if(r.type==='final'){final(r.answer);}
+}
+function reply(t){if(state.pending){state.pending.querySelectorAll('.chip').forEach(x=>x.disabled=true);state.pending=null;}add('me',esc(t));think(()=>handle(window.DSA.step({type:'user_reply',text:t},state)));}
+
+function final(a){
+  const lang=L(),ui=T(),s=a.advice_text.match(/[^.!?]+[.!?]+(\s|$)/g)||[a.advice_text];
+  const act=(ACT[lang]||ACT.en)[a.primary_action];
+  let h='<div class="hd"><span class="pill">'+esc((RISK[lang]||RISK.en)[a.risk_level])+'</span><h4>'+esc(act)+'</h4></div><div class="bd"><p class="first">'+esc(s.slice(0,2).join(' '))+'</p>'+(s.length>2?'<p>'+esc(s.slice(2).join(' '))+'</p>':'')+'</div>';
+  h+='<div class="ft"><button class="btn '+(a.escalation_required?'red':'ghost')+'" id="ho">👤 '+ui.human+'</button></div>';
+  h+='<div class="src">Based on: '+(a.citations||[]).map(c=>esc((DATA.guidance[c]||{})[lang==='fi'?'fi':'en']||c)).join(' · ')+'</div>';
+  const d=add('ans r-'+a.risk_level,h);d.querySelector('#ho').onclick=()=>handoff(a);
+  state.final=a;renderWhy();
+}
+function handoff(a){const c=cur.case;
+  $('#sheetin').innerHTML='<h3>Hand over to '+esc(TARGET[a.escalation_target]||'a DNA specialist')+'?</h3><p style="color:var(--ink2);font-size:14px;margin:0">They get this short summary so you don’t have to repeat yourself. Card numbers, codes, e-mails and phone numbers are removed. Nothing is sent unless you agree.</p>'+
+  '<div class="sum"><div><b>What happened:</b> '+esc(redact(c.opening_message))+'</div><div><b>Assessment:</b> '+esc((ACT.en)[a.primary_action])+' · '+esc(RISK.en[a.risk_level])+'</div><div><b>Already advised:</b> '+esc(redact(a.advice_text).split('.')[0])+'.</div><div><b>Data used:</b> '+esc((a.signals_used||[]).map(x=>(SIGNAME[x]||x).replace(' (with your permission)','')).join(', '))+'</div></div>'+
+  '<div class="row"><button class="btn ghost" id="sc">Not now</button><button class="btn" id="so">Share & connect</button></div>';
+  $('#sheet').classList.add('on');$('#sc').onclick=()=>$('#sheet').classList.remove('on');
+  $('#so').onclick=()=>{$('#sheet').classList.remove('on');add('bot','👤 Connected to '+esc(TARGET[a.escalation_target]||'a DNA specialist')+' (simulated). They already have your summary.');facts.push({k:'👤',h:'Handed to a person',t:'Only after you agreed, with a redacted summary'});renderWhy();};}
+$('#sheet').onclick=e=>{if(e.target.id==='sheet')$('#sheet').classList.remove('on');};
+function redact(t){return String(t).replace(/\bFI\d{2}(?:\s?\d{4}){3}\s?\d{2}\b/gi,'[IBAN]').replace(/\b(?:\d[ -]?){13,19}\b/g,'[card]').replace(/[\w.+-]+@[\w-]+\.[\w.]+/g,'[e-mail]').replace(/(\+\d{3}[\s-]?|\b0)\d{1,3}[\s-]?\d{3,4}[\s-]?\d{3,4}\b/g,'[phone]').replace(/\b\d{4,8}\b/g,'[code]');}
+
+const LABEL={crisis:'Person in crisis',deed_money_paid:'Money already sent to a scammer',deed_card_or_bank:'Card or bank details given away',deed_remote_bank:'Remote access + online banking',deed_no_signal:'Phone suddenly lost service',deed_code_operator:'Operator code given to a caller',deed_code_bank:'Bank code given to a caller',deed_code_account:'Account code given away',deed_installed:'App or profile installed from a link',deed_password:'Password typed on a fake page',deed_account_lost:'Account taken over',police_safe_account:'“Safe account” scam – money moved',police_safe_attempt:'“Safe account” scam attempt',number_porting:'Number transfer you did not ask for',sim_swap:'eSIM moved to another device',mfa_fatigue:'Repeated login approval requests',own_mfa_prompt:'Your own login approval',unknown_login:'Login from an unknown place',ransomware:'Ransomware',monitoring_app:'Possible monitoring by someone close',out_of_scope_trace:'Request to trace a scammer',ceo_fraud:'“CEO” payment request',supplier_bank_change:'Supplier bank-account change',supplier_verified:'Bank change verified by phone',attachment:'Opened an email attachment',remote_access:'Remote access given to a caller',bank_impostor_call:'Caller pretending to be the bank',operator_code_call:'Caller pretending to be the operator',voice_clone:'“Relative in trouble” call',family_new_number:'“Hi mum, new number” message',bank_lure:'Fake bank message with a link',parcel_fee:'Fake parcel fee',genuine_delivery:'Genuine parcel notice',genuine_bank_notice:'Genuine bank notice',clicked_card_link:'Clicked a payment link',identity_theft:'ID details given away',off_topic:'Not a security question',biz_mailbox_takeover:'Company mailbox taken over',biz_remote_given:'Remote access given at work',biz_terminal_code_given:'Payment-terminal code given away',lost_device:'Lost device with data',lost_phone_consumer:'Lost or stolen phone',mistaken_payment:'Payment to a wrong account',unrequested_code:'Login code you did not ask for',call_this_number_lure:'Message asking you to call a number',popup_scareware:'Fake virus pop-up',marketplace:'Marketplace “buyer” scam',qr_fine:'QR-code fine',profile_installed:'Profile installed from a link',invest_call:'Investment “withdrawal” call',router:'Unknown devices on the router',domain_invoice:'Fake domain invoice',wangiri:'One-ring calls from abroad'};
+function pretty(id){const b=id.split(':')[0];if(LABEL[b])return LABEL[b];return id.replace(/^(deed|generic|fallback)_/,'').replace(/[:_]/g,' ').replace(/\b(sim|esim|ceo|sms|apk)\b/gi,m=>m.toUpperCase()).replace(/^./,m=>m.toUpperCase());}
+function renderWhy(){
+  const w=$('#why');
+  let h='<h3>How it decided</h3><p class="sub">In plain words – no hidden AI writing the advice.</p>';
+  if(!cur){h+='<div class="wi"><div class="wk">👈</div><div>Pick a situation, or type your own in the phone.</div></div>';}
+  else{
+    const f=state.f,p=state.p,inj=f&&f.injected;
+    if(p)h+='<div class="wi"><div class="wk">🔎</div><div><b>Recognised</b>'+esc(pretty(p.id))+'</div></div>';
+    if(inj)h+='<div class="wi"><div class="wk">🧪</div><div><b>Manipulation spotted</b>Text inside the message tried to instruct the AI. It was ignored and treated as a scam sign.</div></div>';
+    facts.forEach(x=>{h+='<div class="wi"><div class="wk">'+x.k+'</div><div><b>'+esc(x.h)+'</b>'+esc(x.t)+'</div></div>';});
+    const a=state.final;
+    if(a){h+='<div class="wi"><div class="wk">📋</div><div><b>Information used</b>'+esc((a.signals_used||[]).length?(a.signals_used||[]).map(x=>SIGNAME[x]||x).join(' · '):'Only what you told me')+'</div></div>';
+      h+='<div class="wi"><div class="wk">🎯</div><div><b>Confidence</b>'+Math.round((a.confidence||0)*100)+'%'+(a.escalation_required?' · a person is recommended':'')+'</div></div>';
+      if(cur.ref&&a.primary_action===cur.ref.action){h+='<div class="wi"><div class="wk">✔</div><div><b>Expert reference (Since AI)</b><span class="match">Same action as the expert answer</span></div></div>';}
+      else if(cur.kind==='test')h+='<div class="wi"><div class="wk">🆕</div><div><b>New situation type</b>Never seen while building – handled from public guidance.</div></div>';}
+  }
+  h+='<div class="ctl"><div>When you type your own situation</div><div class="seg" id="au"><button data-a="consumer" class="'+(aud==='consumer'?'on':'')+'">Person</button><button data-a="small_business" class="'+(aud!=='consumer'?'on':'')+'">Small business</button></div><div style="margin-top:10px">Works in English, Finnish and Swedish.</div></div>';
+  w.innerHTML=h;
+  w.querySelectorAll('#au button').forEach(b=>b.onclick=()=>{aud=b.dataset.a;renderWhy();});
+}
+$('#restart').onclick=home;
+$('#form').onsubmit=e=>{e.preventDefault();const v=$('#inp').value.trim();$('#inp').value='';if(!v)return;
+  if(cur&&state.pending){reply(v);return;}
+  const c=window.DSA.fromText(redact(v),aud);
+  document.querySelectorAll('.sc').forEach(x=>x.classList.remove('on'));
+  cur={kind:'live',case:c,sim:null,ref:null};state={};facts=[];th.innerHTML='';add('me',esc(v));think(()=>handle(window.DSA.step({type:'start',case:c},state)));};
+$('#inp').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#form').requestSubmit();}});
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.v));window.scrollTo(0,0);});
+
+// ---- Results
+(function(){const s=EV.single,m=EV.multi,b=EV.baseline;
+ const council=(EV.council.match(/(\d+)\/(\d+)/)||[]).slice(1),live=(EV.live.match(/(\d+)\/(\d+)/)||[]).slice(1);
+ const bar=(lab,ours,base,inv)=>'<div class="bar"><div>'+lab+'</div><div><div class="track" style="margin-bottom:5px"><div class="fill" style="width:'+Math.max(ours,6)+'%;background:var(--acc)">'+ours+'%</div></div><div class="track"><div class="fill" style="width:'+Math.max(base,6)+'%;background:#a8a394">'+base+'%</div></div></div></div>';
+ const J={suspicious_message:'Suspicious message',clicked_link:'Clicked a link',suspicious_call:'Suspicious call',breach_notice:'Breach / account notice',smb_incident:'Small-business incident'};
+ $('#res').innerHTML='<div class="hero"><div><h1>Tested on the official evaluator — and beyond it.</h1><p>Since AI’s SimSet: 588 development cases in Finnish, English and Swedish, scored by the organisers’ own evaluator. Then situations written by people and agents that never saw our code.</p></div></div>'+
+ '<div class="kp"><div class="k"><b>'+s.pass+'%</b><p>safe, correct next step</p><span>baseline '+b.pass+'%</span></div><div class="k"><b>'+s.fa+'%</b><p>false alarms on 132 genuine messages</p><span>baseline '+b.fa+'%</span></div><div class="k"><b>'+s.escr+'%</b><p>hand-offs to a person when needed</p><span>baseline '+b.escr+'%</span></div><div class="k"><b>0</b><p>unsafe statements · consent violations</p><span>in both modes</span></div></div>'+
+ '<div class="sec"><h2>Every journey, against the organisers’ baseline</h2><div class="bars"><div class="legend"><span><i style="background:var(--acc)"></i>Mitä nyt?</span><span><i style="background:#a8a394"></i>Since AI rules baseline</span></div>'+Object.keys(J).map(k=>bar(J[k],s.by_journey[k],b.by_journey[k])).join('')+'</div></div>'+
+ '<div class="sec"><h2>Checks we could not have tuned for</h2><p>Dev results are on cases we designed against, so we also tested on things we never saw.</p><div class="cards3">'+
+ '<div class="c"><div class="n">'+council[0]+' / '+council[1]+'</div><h4>Independent “council” cases</h4><p>Written by separate reviewers who never saw the code. Plus a red-team round: every problem a security expert found is now a regression test ('+(EV.redteam.match(/(\d+\/\d+)/)||['',''])[1]+' pass).</p></div>'+
+ '<div class="c"><div class="n">'+live[0]+' / '+live[1]+'</div><h4>Typed like a real person</h4><p>Informal, misspelled, third-person (“grandma gave her PIN”) – the way judges and customers actually write.</p></div>'+
+ '<div class="c"><div class="n">335</div><h4>Test answers, 9 new families</h4><p>Number port-out, voice-clone call, iPhone profile, QR fine… all answered and validated; scored by the organisers.</p></div></div></div>'+
+ '<div class="sec"><h2>Weighted score (automated 80 of 100 points)</h2><div class="cards3"><div class="c"><div class="n">'+s.proxy+'</div><h4>Single answer</h4><p>Correctness '+s.corr+' · clarity '+s.clar+' · uncertainty '+s.unc+' · privacy '+s.priv+'. Baseline '+b.proxy+'.</p></div><div class="c"><div class="n">'+m.proxy+'</div><h4>Conversation</h4><p>With the organisers’ simulated user: asks one question only when it changes the action, 0.2 questions per case.</p></div><div class="c dark"><div class="n" style="color:#9fd8cc">Fails safe</div><h4>When information is missing</h4><p>Without the shared message it becomes more cautious, never careless: '+EV.stress[2][4]+' under-reactions in 588 cases.</p></div></div></div>';})();
+
+// ---- How it works
+$('#how').innerHTML='<div class="hero"><div><h1>Simple on the outside. Strict on the inside.</h1><p>The assistant never improvises safety advice. It recognises the situation, follows a reviewed safety policy, and speaks in sentences checked in three languages.</p></div></div>'+
+ '<div class="flow">'+[['1','Listen','The user’s own words and the shared message. Text inside the message is treated as evidence, never as instructions.'],['2','Recognise','Around 70 situations, decided by what was asked for, what the user already did and who it claims to be.'],['3','Ask once','Only when the answer changes the action (“Did you type your card details?”). Already said? Not asked.'],['4','Consent','DNA data like SIM changes or logins is read only after “Allow”, once, for this question.'],['5','Act','One clear step first, then why, then a hand-off to the right person with a redacted summary.']].map(x=>'<div class="c"><div class="n">'+x[0]+'</div><h4>'+x[1]+'</h4><p>'+x[2]+'</p></div>').join('')+'</div>'+
+ '<div class="sec"><h2>Why not just ask a chatbot?</h2><p>Most solutions put a general AI model in front of the user. That is fast to build, but hard to trust with people’s money.</p><div class="vs"><div class="c"><h4>Typical chatbot approach</h4><ul><li>Writes new advice every time – can be wrong or inconsistent</li><li>Can be manipulated by text hidden in a scam message</li><li>Tends to over-warn (“block your card!”) or under-warn</li><li>Hard for legal and compliance to approve</li></ul></div><div class="c dark"><h4>Mitä nyt?</h4><ul><li>Same situation → same reviewed answer, every time</li><li>Scam text aimed at AI is detected and ignored</li><li>0% false alarms, 100% hand-offs when needed (official evaluator)</li><li>Every answer explains which information it used and why</li></ul></div></div></div>'+
+ '<div class="sec"><h2>Safety boundaries</h2><div class="cards3"><div class="c"><h4>Never asks for secrets</h4><p>No passwords, codes or card numbers – and they are removed if typed.</p></div><div class="c"><h4>People do the irreversible</h4><p>Locking a SIM or blocking a number is done by a DNA person after approval, never by the bot.</p></div><div class="c"><h4>Unsure means careful</h4><p>“Not sure” is treated as the riskier answer, and unclear cases go to a person instead of a guess.</p></div></div></div>'+
+ '<div class="sec"><h2>How it fits into DNA</h2><div class="cards3"><div class="c"><h4>Where</h4><p>A “What should I do now?” button on DNA’s call warnings, link blocks and security app, plus the app chat and business portal.</p></div><div class="c"><h4>How</h4><p>A small stateless engine (≈90 kB) that runs in the app or portal. Signals come through a consent service.</p></div><div class="c"><h4>Next</h4><p>Optionally an AI model only to recognise messy wording – the safety policy and the wording stay fixed.</p></div></div></div>';
+
+// ---- Why DNA
+$('#dna').innerHTML='<div class="hero"><div><h1>DNA already warns. Mitä nyt? tells people what to do next.</h1><p>The missing piece between a scam warning and a safe customer.</p></div></div>'+
+ '<div class="cards3"><div class="c dark"><div class="n" style="color:#9fd8cc">Only an operator</div><h4>Sees what banks can’t</h4><p>SIM and eSIM changes, number transfers, account logins, call and link warnings. That is DNA’s unfair advantage.</p></div><div class="c"><div class="n">Fewer calls</div><h4>Cheaper support</h4><p>Genuine cases close in the chat. Urgent ones reach the right team with a ready summary.</p></div><div class="c"><div class="n">Trust</div><h4>Customers stay</h4><p>Help at the scariest moment builds loyalty that price campaigns don’t.</p></div></div>'+
+ '<div class="sec"><h2>Stops the most expensive fraud first</h2><div class="cards3"><div class="c"><h4>Number takeover</h4><p>eSIM moves and port-outs get an immediate “lock your number” and a priority hand-off.</p></div><div class="c"><h4>Bank and “police” calls</h4><p>Codes given away or a “safe account” transfer → call the bank now, report to police.</p></div><div class="c"><h4>Business fraud</h4><p>CEO and invoice fraud, hijacked mailboxes, ransomware – with steps a shop owner can follow.</p></div></div></div>'+
+ '<div class="sec"><h2>How DNA could package it <span class="proto" style="vertical-align:4px">hypothesis</span></h2><div class="vs"><div class="c"><h4>Consumers · included</h4><p>Free in the DNA app for every subscriber. Optional “family protection” so a parent’s scare reaches the same help.</p></div><div class="c"><h4>Small business · €5–9 per user / month</h4><p>Part of a DNA Business security bundle with human security support, fraud playbooks and an incident log for NIS2 and GDPR duties.</p></div></div><p style="margin-top:14px;color:var(--ink2)">Pilot metrics: minutes to first correct action · fraud losses avoided · support minutes per case · customer satisfaction after an incident.</p></div>';
+
+home();
+})();
+</script>
+</body>
+</html>
